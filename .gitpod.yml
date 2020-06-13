@@ -1,1 +1,5 @@
 privileged: true
+github:
+  prebuilds:
+    # Enable prebuilds for each push to master
+    master: true
