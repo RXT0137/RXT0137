@@ -1,0 +1,71 @@
+# This is a makefile designed for rustlang
+# CROSS-PLATFORM: Do not use shell since that may not be supported on windows
+
+# Reference: https://github.com/sagiegurari/cargo-make#usage-simple
+
+# This is used to generate a Makefile for people to use `make`
+[tasks.gen-makefile]
+script = [
+'''
+	printf '%s\n' "# DO_NOT_EDIT: This is an auto-generated file from Makefile.toml" "" > Makefile
+
+	printf '%s\n' "all: serve" "" >> Makefile
+
+	grep -o "^\[tasks\..*\]" "Makefile.toml" | sed -E "s#(^\[tasks\.(.*)\]$)#\2:\n	@ cargo make \2\n#gm" >> Makefile
+'''
+]
+
+# FIXME: panics if 'tasks.clean' is used
+# CROSS-PLATFORM: `cargo clean` doesn't clean wasm dirs
+[tasks.clear]
+script = [
+'''
+	cargo clean
+	[ ! -d build ] || rm -r build
+	[ ! -d package-lock.json ] || rm -r package-lock.json
+	[ ! -d pkg ] || rm -r pkg
+	# FIXME-GITPOD(Krey): Requires -rf since it asks for permission to remove .git 
+	[ ! -d www ] || rm -rf www
+'''
+]
+dependencies = [ "gen-makefile" ]
+
+[tasks.build]
+command = "cargo"
+args = ["build"]
+dependencies = [ "clear" ]
+
+[tasks.run]
+command = "cargo"
+args = ["run"]
+dependencies = [ "clear" ]
+
+[tasks.test]
+command = "cargo"
+args = ["test"]
+dependencies = [ "clear" ]
+
+[tasks.bench]
+command = "cargo"
+args = ["bench"]
+dependencies = [ "clear" ]
+
+[tasks.website-build]
+install_crate = "wasm-pack"
+command = "wasm-pack"
+args = [ "build" ]
+dependencies = [ "clear", "build" ]
+
+# Serve the website
+# Reference: https://rustwasm.github.io/book/game-of-life/hello-world.html
+# CROSS-PLATFORM: Make compatible with Windows
+[tasks.serve]
+script = [
+'''
+	npm init wasm-app www
+	cd www || exit 47
+	npm install
+	npm run start
+'''
+]
+dependencies = [ "clear", "build", "website-build" ]

@@ -1,4 +1,19 @@
 privileged: true
+ports:
+  # Krey: Used by wasm for the website
+  - port: 8080
+    onOpen: open-preview
+tasks:
+  # Krey: Required for makefile handling
+  - before: cargo install cargo-make
+# Krey: Required for wasm runtime
+  - before: cargo make serve
+vscode:
+  extensions:
+    - belfz.search-crates-io@1.2.1:kSLnyrOhXtYPjQpKnMr4eQ==
+    - matklad.rust-analyzer@0.2.199:/jAGiq50QMRNeZSEos0tXw==
+    - streetsidesoftware.code-spell-checker@1.9.0:B0Usq/ATl+ohrSS731xRiA==
+    - bungcip.better-toml@0.3.2:3QfgGxxYtGHfJKQU7H0nEw==
 github:
   prebuilds:
     # Enable prebuilds for each push to master

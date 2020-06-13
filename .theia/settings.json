@@ -1,0 +1,39 @@
+{
+	"editor.wordWrap": "on",
+	// To show invisibles
+	"editor.renderWhitespace": "all",
+	"code-eol.newlineCharacter": "¬",
+	"code-eol.returnCharacter" : "¤",
+	"code-eol.crlfCharacter" : "¤¬",
+	"editor.detectIndentation": true,
+	"editor.tabSize": 2,
+	"editor.tabCompletion": "on",
+	// Rustlang configuration
+	"crates.upToDateDecorator": "",
+	"rust.wait_to_build": 0,
+	// FIXME: Expand nproc command here
+	// NOTICE: Gitpod is currently (130220) limited on 8 threads
+	"rust.jobs": 8,
+	"rust.build_on_save": true,
+	"rust.target_dir": "build/rustlang",
+	"rust-analyzer.displayInlayHints": true,
+	"rust-analyzer.highlightingOn": true,
+	// SHELL
+	"shellcheck.enableQuickFix": true,
+	"shellcheck.run": "onSave",
+	// FIXME: File a bug to cSpell to allow `word's`
+	"cSpell.userWords": [
+		"gitpod",
+		"Hrbek",
+		"gitpod's",
+		"Kreyren",
+		"Kreyren's",
+		"Krey",
+		"Krey's",
+		"lenght",
+		"hotfix",
+		"shellcheck",
+		"bindgen",
+		"wasm"
+	],
+}
