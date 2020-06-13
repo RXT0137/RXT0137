@@ -1,0 +1,5 @@
+# Exclude build targets
+/target
+
+# Exclude lockfiles
+Cargo.lock
