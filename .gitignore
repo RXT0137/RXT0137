@@ -1,5 +1,10 @@
 # Exclude build targets
 /target
+## WASM
+/www
+/pkg
+/build
+package-lock.json
 
 # Exclude lockfiles
 Cargo.lock
