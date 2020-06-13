@@ -14,3 +14,11 @@ vscode:
     - matklad.rust-analyzer@0.2.199:/jAGiq50QMRNeZSEos0tXw==
     - streetsidesoftware.code-spell-checker@1.9.0:B0Usq/ATl+ohrSS731xRiA==
     - bungcip.better-toml@0.3.2:3QfgGxxYtGHfJKQU7H0nEw==
+github:
+  prebuilds:
+    # Enable prebuilds for each push to master
+    master: true
+    # Used to prebuilt the workspace for merge requests
+    pullRequestsFromForks: true
+    addLabel: gitpod-ready
+    addComment: true
