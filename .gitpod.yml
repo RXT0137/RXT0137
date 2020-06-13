@@ -3,3 +3,7 @@ github:
   prebuilds:
     # Enable prebuilds for each push to master
     master: true
+    # Used to prebuilt the workspace for merge requests
+    pullRequestsFromForks: true
+    addLabel: gitpod-ready
+    addComment: true
